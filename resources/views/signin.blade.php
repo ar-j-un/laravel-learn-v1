@@ -2,7 +2,26 @@
 
     <h1>Sign In</h1>
 
+    @if(session('error'))
+        <p style="color:red;">{{ session('error') }}</p>
+    @endif
+
     <form method="POST" action="/signin">
+        @csrf
+
+        <label>Email:</label><br>
+        <input type="email" name="email" required><br><br>
+
+        <label>Password:</label><br>
+        <input type="password" name="password" required><br><br>
+
+        <button type="submit">Login</button>
+    </form>
+
+</x-layout>
+
+
+    {{--<form method="POST" action="/signin">
         @csrf
         <textarea name="name" id="name" cols="30" rows="3"></textarea>
         <button type="submit" ></button>
@@ -16,8 +35,8 @@
             @endforeach
         </ul>
     </div>
-    @endif
-</x-layout>
+    @endif--}}
+
 
     {{-- @auth
         
