@@ -1,6 +1,6 @@
 @props([
-        'title' => 'Welcome'
-    ])
+    'title' => 'Welcome'
+])
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,6 +29,7 @@
         <a href="/signin">Sign in</a>
         <a href="/about">About Us</a>
         <a href="/contact">Contact Us</a>
+        <a href="/functions">functions</a>
     </nav>
     <main>
     {{$slot}}
