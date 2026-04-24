@@ -29,7 +29,7 @@
         <a href="/signin">Sign in</a>
         <a href="/about">About Us</a>
         <a href="/contact">Contact Us</a>
-        <a href="/functions">functions</a>
+        <a href="/functions">Functions</a>
     </nav>
     <main>
     {{$slot}}

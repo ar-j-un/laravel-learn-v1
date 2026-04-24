@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use App\Models\Signin;
 
 Route::view('/','home',['greeting' => 'Hello','person' => request('person','Guest'),]);
 
@@ -11,11 +13,29 @@ Route::view('/about','aboutus');
 
 Route::view('/functions','functions',['options' => ['add','commit','push']]);
 
-Route::get('/signin', function () {
-    return view('signin');
+Route::get('/signin', function (){
+    $names=Signin::all();
+    //$names= DB::table('signins')->get(); 
+    //return $names[0]->username;
+    return view('signin',['names' => $names,]);
 });
 
-Route::post('/signin', function (Request $request) {
+Route::post('/signin', function () {
+    Signin::create(['username'=>request('name')]);
+    return redirect('/signin');
+    });
+
+Route::get('/delete-logins',function (){
+    session()->forget('names');
+    return redirect('/signin');
+});
+
+
+//Route::get('/signin', function () {
+    //return view('signin');
+//});
+
+/*Route::post('/signin', function (Request $request) {
     $email = $request->input('email');
     $password = $request->input('password');
 
@@ -24,7 +44,7 @@ Route::post('/signin', function (Request $request) {
     } else {
         return back()->with('error', 'Invalid credentials');
     }
-});
+});*/
 
 
 /*Route::get('/signin', function (){

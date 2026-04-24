@@ -2,23 +2,40 @@
 
     <h1>Sign In</h1>
 
-    @if(session('error'))
+    <form method="POST" action="/signin">
+        @csrf
+        <textarea name="name" cols="30" rows="3"></textarea>
+        <button type="submit" ></button>
+    </form>
+    @if($names->count())
+    <div>
+        <h2>Signed in Users</h2>
+        <ul>
+            @foreach ($names as $name)
+            <li>{{ $name->username }}</li>        
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
+
+</x-layout>
+
+    {{-- @if(session('error'))
         <p style="color:red;">{{ session('error') }}</p>
     @endif
 
-    <form method="POST" action="/signin">
-        @csrf
+        <form method="POST" action="/signin">
+            @csrf
 
-        <label>Email:</label><br>
-        <input type="email" name="email" required><br><br>
+            <label>Email:</label><br>
+            <input type="email" name="email" required><br><br>
 
-        <label>Password:</label><br>
-        <input type="password" name="password" required><br><br>
+            <label>Password:</label><br>
+            <input type="password" name="password" required><br><br>
 
-        <button type="submit">Login</button>
-    </form>
-
-</x-layout>
+            <button type="submit">Login</button>
+        </form> --}}
 
 
     {{--<form method="POST" action="/signin">
