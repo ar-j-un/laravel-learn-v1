@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('signins', function (Blueprint $table) {
             $table->id();
             $table->string('username');
-            $table->timestamps();
+            $table->timestamps();   
         });
     }
 

@@ -12,7 +12,8 @@
         <h2>Signed in Users</h2>
         <ul>
             @foreach ($names as $name)
-            <li>{{ $name->username }}</li>        
+            <a href="/signin/{{$name->id}}">{{ $name->username }}</a>
+          {{--  <li>{{ $name->username }}</li> --}}
             @endforeach
         </ul>
     </div>

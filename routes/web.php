@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Models\Signin;
 
+use function PHPUnit\Framework\isNull;
+
 Route::view('/','home',['greeting' => 'Hello','person' => request('person','Guest'),]);
 
 //Route::view('/signin','signin');
@@ -13,7 +15,54 @@ Route::view('/about','aboutus');
 
 Route::view('/functions','functions',['options' => ['add','commit','push']]);
 
+//index
 Route::get('/signin', function (){
+    $names=Signin::all();
+    return view('signin.index',['names' => $names,]);
+});
+
+//show
+Route::get('/signin/{signinId}', function (Signin $signinId){
+    return view('signin.show',['signinId' => $signinId,]);
+});
+
+//edit
+Route::get('/signin/{signinId}/change', function (Signin $signinId){
+    return view('signin.change',['signinId' => $signinId,]);
+});
+
+//update
+Route::patch('/signin/{signinId}', function (Signin $signinId){
+    $signinId->update([
+        'username' => request('username')
+    ]);
+    return redirect("/signin/{$signinId->id}");
+});
+
+//store
+Route::post('/signin', function () {
+    Signin::create(['username'=>request('name')]);
+    return redirect('/signin');
+    });
+
+//destroy
+Route::delete('/signin/{signinId}', function (Signin $signinId) {
+    $signinId->delete();
+    return redirect('/signin');
+    });
+
+Route::get('/delete-logins',function (){
+    Signin::truncate(); 
+    return redirect('/signin');
+});
+
+/*Route::get('/signin/{id}', function ($id){
+    $name=Signin::findOrFail($id);
+    return view('signin.show',['name' => $name,]);
+});*/
+
+
+/*Route::get('/signin', function (){
     $names=Signin::all();
     //$names= DB::table('signins')->get(); 
     //return $names[0]->username;
@@ -23,12 +72,7 @@ Route::get('/signin', function (){
 Route::post('/signin', function () {
     Signin::create(['username'=>request('name')]);
     return redirect('/signin');
-    });
-
-Route::get('/delete-logins',function (){
-    session()->forget('names');
-    return redirect('/signin');
-});
+    });*/
 
 
 //Route::get('/signin', function () {
