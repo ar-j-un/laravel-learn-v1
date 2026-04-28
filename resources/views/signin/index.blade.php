@@ -2,11 +2,11 @@
 
     <h1>Sign In</h1>
 
-    <form method="POST" action="/signin">
+    {{--<form method="POST" action="/signin">
         @csrf
         <textarea name="name" cols="30" rows="3"></textarea>
         <button type="submit" ></button>
-    </form>
+    </form> --}}
     @if($names->count())
     <div>
         <h2>Signed in Users</h2>
@@ -17,6 +17,11 @@
             @endforeach
         </ul>
     </div>
+    <div>
+        <a href="/signin/create">New User Sign In</a>
+    </div>
+    @else
+        <p>No Loged In User <a href="/signin/create">New User Sign In</a></p>
     @endif
 
 

@@ -21,6 +21,17 @@ Route::get('/signin', function (){
     return view('signin.index',['names' => $names,]);
 });
 
+//create
+Route::get('/signin/create', function (){
+    return view('signin.create');
+});
+
+//store
+Route::post('/signin', function () {
+    Signin::create(['username'=>request('name')]);
+    return redirect('/signin');
+    });
+
 //show
 Route::get('/signin/{signinId}', function (Signin $signinId){
     return view('signin.show',['signinId' => $signinId,]);
@@ -39,28 +50,23 @@ Route::patch('/signin/{signinId}', function (Signin $signinId){
     return redirect("/signin/{$signinId->id}");
 });
 
-//store
-Route::post('/signin', function () {
-    Signin::create(['username'=>request('name')]);
-    return redirect('/signin');
-    });
-
 //destroy
 Route::delete('/signin/{signinId}', function (Signin $signinId) {
     $signinId->delete();
     return redirect('/signin');
     });
 
-Route::get('/delete-logins',function (){
-    Signin::truncate(); 
-    return redirect('/signin');
-});
+
 
 /*Route::get('/signin/{id}', function ($id){
     $name=Signin::findOrFail($id);
     return view('signin.show',['name' => $name,]);
 });*/
 
+/*Route::get('/delete-logins',function (){
+    Signin::truncate(); 
+    return redirect('/signin');
+});*/
 
 /*Route::get('/signin', function (){
     $names=Signin::all();
