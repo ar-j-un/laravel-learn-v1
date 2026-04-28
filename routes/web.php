@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SigninController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -15,7 +16,17 @@ Route::view('/about','aboutus');
 
 Route::view('/functions','functions',['options' => ['add','commit','push']]);
 
-//index
+
+Route::get('/signin',[SigninController::class, 'index']);
+Route::get('/signin/create' , [SigninController::class , 'create']);
+Route::post('/signin', [SigninController::class,'store']);
+Route::get('/signin/{signinDetails}', [SigninController::class,'show']);
+Route::get('/signin/{signinDetails}/change', [SigninController::class,'edit']);
+Route::patch('/signin/{signinDetails}', [SigninController::class,'update']);
+Route::delete('/signin/{signinDetails}', [SigninController::class,'destroy']);
+
+
+/*//index
 Route::get('/signin', function (){
     $names=Signin::all();
     return view('signin.index',['names' => $names,]);
@@ -33,29 +44,28 @@ Route::post('/signin', function () {
     });
 
 //show
-Route::get('/signin/{signinId}', function (Signin $signinId){
-    return view('signin.show',['signinId' => $signinId,]);
+Route::get('/signin/{signinDetails}', function (Signin $signinDetails){
+    return view('signin.show',['signinDetails' => $signinDetails,]);
 });
 
 //edit
-Route::get('/signin/{signinId}/change', function (Signin $signinId){
-    return view('signin.change',['signinId' => $signinId,]);
+Route::get('/signin/{signinDetails}/change', function (Signin $signinDetails){
+    return view('signin.change',['signinDetails' => $signinDetails,]);
 });
 
 //update
-Route::patch('/signin/{signinId}', function (Signin $signinId){
-    $signinId->update([
+Route::patch('/signin/{signinDetails}', function (Signin $signinDetails){
+    $signinDetails->update([
         'username' => request('username')
     ]);
-    return redirect("/signin/{$signinId->id}");
+    return redirect("/signin/{$signinDetails->id}");
 });
 
 //destroy
-Route::delete('/signin/{signinId}', function (Signin $signinId) {
-    $signinId->delete();
+Route::delete('/signin/{signinDetails}', function (Signin $signinDetails) {
+    $signinDetails->delete();
     return redirect('/signin');
-    });
-
+    });*/
 
 
 /*Route::get('/signin/{id}', function ($id){
