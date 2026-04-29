@@ -29,7 +29,13 @@ class SigninController extends Controller
      */
     public function store(Request $request)
     {
-        Signin::create(['username'=>request('name')]);
+        $request->validate([
+            'name' => ['required','min:4','unique:signins,username'],
+            'password'=> ['required','min:6']
+        ]);
+
+        Signin::create(['username'=>request('name'),
+                        'password'=>request('password')]);
         return redirect('/signin');
     }
 
