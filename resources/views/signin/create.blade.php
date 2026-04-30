@@ -1,6 +1,6 @@
-<x-layout title="SignIn">
+<x-layout title="SignUp">
 
-    <h1>Sign In</h1>
+    <h1>Sign Up</h1>
 
     <form method="POST" action="/signin">
         @csrf
@@ -11,7 +11,7 @@
             <x-forms.error name="name" />
             <x-forms.error name='password' />
         </div>
-        <button type="submit" style="padding: 8px 16px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; width: 300px; gap: 10px;">Sign In</button>
+        <button type="submit" style="padding: 8px 16px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; width: 300px; gap: 10px;">Sign Up</button>
         </div>
     </form>
     

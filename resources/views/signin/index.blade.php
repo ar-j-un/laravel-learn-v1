@@ -18,10 +18,10 @@
         </ul>
     </div>
     <div>
-        <a href="/signin/create">New User Sign In</a>
+        <a href="/signin/create">New User Sign Up</a>
     </div>
     @else
-        <p>No Loged In User <a href="/signin/create">New User Sign In</a></p>
+        <p>No Loged In User <a href="/signin/create">New User Sign Up</a></p>
     @endif
 
 

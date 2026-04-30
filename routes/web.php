@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SigninController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -8,7 +9,7 @@ use App\Models\Signin;
 
 use function PHPUnit\Framework\isNull;
 
-Route::view('/','home',['greeting' => 'Hello','person' => request('person','Guest'),]);
+//Route::view('/','home',['greeting' => 'Hello','person' => request('person','Guest'),]);
 
 //Route::view('/signin','signin');
 
@@ -16,6 +17,7 @@ Route::view('/about','aboutus');
 
 Route::view('/functions','functions',['options' => ['add','commit','push']]);
 
+Route::get('/',[HomeController::class, 'index']);
 
 Route::get('/signin',[SigninController::class, 'index']);
 Route::get('/signin/create' , [SigninController::class , 'create']);

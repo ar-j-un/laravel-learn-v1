@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Signin;
+use Auth;
+use Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades;
+//use App\Http\Controllers\Auth;
 
 class SigninController extends Controller
 {
@@ -30,13 +34,18 @@ class SigninController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required','min:4','unique:signins,username'],
-            'password'=> ['required','min:6']
-        ]);
+            'name' => ['required','min:4','unique:signins,username','max:255'],
+            'password'=> ['required','min:6','max:255']
+             ]);
 
-        Signin::create(['username'=>request('name'),
-                        'password'=>request('password')]);
-        return redirect('/signin');
+            $user = Signin::create([
+                            'username'=> $request-> name,
+                            'password'=> Hash::make($request->password)
+                                    ]);
+
+            Auth::login($user);
+
+            return redirect('/');
     }
 
     /**
@@ -63,7 +72,7 @@ class SigninController extends Controller
         $signinDetails->update([
         'username' => request('username')
     ]);
-    return redirect("/signin/{$signinDetails->id}");
+    return redirect("/signin");
     }
 
     /**

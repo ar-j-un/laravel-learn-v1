@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
 
 /**
  * @property int $id
@@ -18,7 +20,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Signin whereUsername($value)
  * @mixin \Eloquent
  */
-class Signin extends Model
+class Signin extends Authenticatable
 {
-    protected $guarded = [];
+    //protected $guarded = [];
+    protected $fillable = ['username', 'password'];
 }

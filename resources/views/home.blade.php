@@ -4,4 +4,12 @@
     <p>
     {{ $greeting }} {{ $person }}!
     </p>
+    <div>
+        @guest
+            <p>out</p>
+        @endguest
+        @auth
+            <a>in</a>
+        @endauth
+    </div>
 </x-layout>
