@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\SigninController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -26,7 +27,13 @@ Route::get('/signin/{signinDetails}', [SigninController::class,'show']);
 Route::get('/signin/{signinDetails}/change', [SigninController::class,'edit']);
 Route::patch('/signin/{signinDetails}', [SigninController::class,'update']);
 Route::delete('/signin/{signinDetails}', [SigninController::class,'destroy']);
+Route::delete('/signin/{signinDetails}/signout',[SigninController::class,'signout']);
+Route::get('/signin/{signinDetails}/signin', [SigninController::class,'signin']);
+Route::post('/signin/{signinDetails}/signin',[SigninController::class,'signinSession']);
 
+//Route::delete('/logout',[SessionsController::class,'destroy']);
+//Route::post('/login',[SessionsController::class,'store']);
+//Route::get('/login',[SessionsController::class,'create']);
 
 /*//index
 Route::get('/signin', function (){
